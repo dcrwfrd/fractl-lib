@@ -89,7 +89,7 @@
       nixosConfigurations = mkNixosConfigurations;
       
       overlays = {
-        default = import "${self}/${flakeCfg.paths.overlays}" { inherit inputs; };
+        default = import "${self}/${flakeCfg.paths.overlay}" { inherit inputs; };
       };
     };
   };

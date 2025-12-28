@@ -8,7 +8,7 @@ let
     genAttrs;
 
   cfg = config.nixos.users;
-  users = scanDirs flakeCfg.paths.users;
+  users = scanDirs flakeCfg.paths.user;
 
 in
 {
@@ -37,8 +37,8 @@ in
 
       users = genAttrs cfg.enabledUsers (user: {
         imports = [
-          (inputs.import-tree "${flakeCfg.paths.home-manager}")
-          (inputs.import-tree "${flakeCfg.paths.users}/${user}")
+          (inputs.import-tree "${flakeCfg.paths.homeModules}")
+          (inputs.import-tree "${flakeCfg.paths.user}/${user}")
         ];
 
         programs.home-manager.enable = true;
