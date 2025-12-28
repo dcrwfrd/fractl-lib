@@ -17,33 +17,33 @@
       paths = {
         users = lib.mkOption {
           type = lib.types.path;
-          default = "${self}/config/users";
+          default = "${self}/config/user";
         };
 
         hosts = lib.mkOption {
           type = lib.types.path;
-          default = "${self}/config/hosts";
+          default = "${self}/config/host";
         };
 
-        modules = lib.mkOption {
+        nixosModules = lib.mkOption {
           type = lib.types.path;
-          default = "${self}/modules";
+          default = "${self}/module/nixos";
         };
 
-        home-manager = lib.mkOption {
+        homeModules = lib.mkOption {
           type = lib.types.path;
-          default = "${self}/home-manager";
+          default = "${self}/module/home";
         };
 
         overlays = lib.mkOption {
           type = lib.types.path;
-          default = "${self}/overlays";
+          default = "${self}/overlay";
         };
 
         extraModulePaths = lib.mkOption {
           type = lib.types.listOf lib.types.path;
           default = [ ];
-          example = [ ./extra-modules ./company-modules ];
+          example = [ ./module/example ./example ];
         };
       };
 
@@ -55,7 +55,7 @@
       extraSpecialArgs = lib.mkOption {
         type = lib.types.attrs;
         default = { };
-        example = { myLib = import ./myLib.nix; };
+        example = { example = import ./example.nix; };
       };
 
       homeManager = {
