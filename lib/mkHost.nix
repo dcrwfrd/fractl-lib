@@ -4,9 +4,9 @@ let
   inherit (lib) listToAttrs;
   inherit (inputs) nixpkgs import-tree;
 
-  hosts = scanDirs flakeCfg.paths.host;
+  hosts = scanDirs flakeCfg.paths.hosts;
   specialArgs = flakeCfg.specialArgs // flakeCfg.extraSpecialArgs;
-  overlays = [ (import flakeCfg.paths.overlay { inherit inputs; }) ];
+  overlays = [ (import flakeCfg.paths.overlays { inherit inputs; }) ];
   extraModules = map (path: import-tree path) flakeCfg.paths.extraModulePaths;
 
   mkNixosConfiguration =
@@ -17,7 +17,7 @@ let
 
       modules = [
         (import-tree flakeCfg.paths.nixosModules)
-        (import-tree "${flakeCfg.paths.host}/${host}")
+        (import-tree "${flakeCfg.paths.hosts}/${host}")
         inputs.home-manager.nixosModules.home-manager
         mkUser
 
