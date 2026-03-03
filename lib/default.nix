@@ -42,7 +42,7 @@
 
         extraModulePaths = lib.mkOption {
           type = lib.types.listOf lib.types.path;
-          default = [ ./modules/extra/];
+          default = [ ./modules/extra ];
           example = [ ./extraModules ];
         };
       };
