@@ -41,7 +41,7 @@
         };
 
         extraModulePaths = lib.mkOption {
-          type = lib.types.listOf lib.types.path;
+          type = lib.types.path;
           default = "${self}/modules/extra";
           example = "${self}/extraModules";
         };
