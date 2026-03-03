@@ -7,7 +7,6 @@ let
   hosts = scanDirs flakeCfg.paths.hosts;
   specialArgs = flakeCfg.specialArgs // flakeCfg.extraSpecialArgs;
   overlays = [ (import flakeCfg.paths.overlays { inherit inputs; }) ];
-  extraModules = map (path: import-tree path) flakeCfg.paths.extraModulePaths;
 
   mkNixosConfiguration =
     host:
@@ -25,7 +24,7 @@ let
           nixpkgs.overlays = overlays;
           networking.hostName = "${host}";
         }
-      ] ++ extraModules;
+      ];
     };
 
   mkHost = host: {

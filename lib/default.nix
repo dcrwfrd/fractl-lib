@@ -39,12 +39,6 @@
           type = lib.types.path;
           default = "${self}/overlays";
         };
-
-        extraModulePaths = lib.mkOption {
-          type = lib.types.path;
-          default = "${self}/modules/extra";
-          example = "${self}/extraModules";
-        };
       };
 
       specialArgs = lib.mkOption {
